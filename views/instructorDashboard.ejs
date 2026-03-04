@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <%- include("./components/instructorHeader.ejs") %>
+
+    <div class="container mt-4">
+        <h2>Instructor Dashboard</h2>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <a class="btn btn-primary" href="/instructorCreate">Create Course</a>
+                <a class="btn btn-secondary" href="/instructorEarnings">Earnings</a>
+                <a class="btn btn-info" href="/instructorAnalysis">Analysis</a>
+            </div>
+            <div>
+                <strong>Total Earnings: </strong> ₹<%= totalEarnings %>
+            </div>
+        </div>
+
+        <div class="row">
+            <% courses.forEach(function(course){ %>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <% if (course.coverImage) { %>
+                            <img src="<%= course.coverImage %>" class="card-img-top" style="height:250px; object-fit:cover;">
+                        <% } %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= course.title %></h5>
+                            <p class="card-text"><%= course.description %></p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Videos: <%= course.videos.length %> | Quizzes: <%= course.quizzes.length %>
+                                </small>
+                            </p>
+                            <!-- Fixed links -->
+                            <a href="/instructorUploadvideo/<%= course._id %>/video/upload" class="btn btn-sm btn-outline-primary">Upload Video</a>
+                            <a href="/instructorAddquiz/<%= course._id %>/quiz/add" class="btn btn-sm btn-outline-warning">Add Quiz</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <%- include("./components/footer.ejs") %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

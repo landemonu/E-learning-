@@ -1,0 +1,58 @@
+<% if (typeof certificates === "undefined") { certificates = []; } %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<%- include("./components/studentheader.ejs") %>
+
+<div class="container mt-5">
+
+    <h3 class="mb-4">My Certificates</h3>
+
+    <% if (!certificates || certificates.length === 0) { %>
+        <div class="alert alert-warning">
+            Complete the course and pass the quiz to unlock certificate.
+        </div>
+    <% } else { %>
+
+        <div class="row">
+            <% certificates.forEach(c => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-success shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <%= c.course.title %>
+                            </h5>
+
+                            <p class="text-muted">
+                                Certificate of Completion
+                            </p>
+
+                        <a href="/studentCertificate/<%= c.course._id %>"
+                            class="btn btn-success btn-sm">
+                            Download Certificate
+                        </a>
+                        
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } %>
+
+</div>
+
+<%- include("./components/footer.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

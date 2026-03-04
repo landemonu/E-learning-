@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<%- include("./components/studentheader.ejs") %>
+
+<div class="container mt-4">
+    <h2 class="mb-4">My Courses</h2>
+
+    <% if (!enrolledCourses || enrolledCourses.length === 0) { %>
+        <div class="alert alert-info">
+            You have not purchased any course yet.
+        </div>
+    <% } else { %>
+
+        <div class="row">
+            <% enrolledCourses.forEach(course => { %>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= course.title %></h5>
+
+                            <p class="card-text text-muted">
+                                Instructor:
+                                <%= course.instructor?.name || "Instructor" %>
+                            </p>
+
+                            <a href="/studentCourse/<%= course._id %>" class="btn btn-sm btn-success">View Course</a>
+                        </div>
+
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } %>
+</div>
+
+<%- include("./components/footer.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Learning</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold"
+         href="<%= (typeof role !== 'undefined' && role === 'student')? '/studentDashboard': '/' %>">
+
+        <img src="http://localhost:1000/logo.png" alt="logo" height="70px"> E-Learning</a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#studentNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <!-- Navbar -->
+      <div class="collapse navbar-collapse" id="studentNavbar">
+
+        <!-- Left Links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <% if (typeof role !== 'undefined' && role === 'student') { %>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/studentDashboard">Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/studentMycourses">My Courses</a>
+            </li>
+
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/studentQuiz">Quiz</a>
+            </li> -->
+
+            <li class="nav-item">
+              <a class="nav-link" href="/studentCertificate">Certificate</a>
+            </li>
+
+          <% } %>
+
+        </ul>
+
+
+        <!-- Right Profile -->
+        <ul class="navbar-nav ms-auto align-items-center">
+
+          <% if (typeof userData !== 'undefined' && userData) { %>
+
+            <li class="nav-item dropdown">
+
+              <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+                 href="#"
+                 id="profileDropdown"
+                 role="button"
+                 data-bs-toggle="dropdown">
+
+                <img src="/<%= userData.profile || 'default.png' %>"
+                     alt="profile"
+                     width="40"
+                     height="40"
+                     class="rounded-circle">
+
+                <span class="badge bg-success px-3 py-2">
+                  <%= userData.name %>
+                </span>
+
+              </a>
+
+
+              <ul class="dropdown-menu dropdown-menu-end">
+
+                <li>
+                  <a class="dropdown-item" href="/profile">
+                    Edit Profile
+                  </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                  <a class="dropdown-item text-danger" href="/logout">
+                    Logout
+                  </a>
+                </li>
+
+              </ul>
+
+            </li>
+
+          <% } %>
+
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+
+</body>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+</html>

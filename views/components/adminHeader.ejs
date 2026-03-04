@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Admin Panel Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm my-2">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="/adminDashboard">
+        <img src="http://localhost:1000/logo.png" alt="logo" height="70px">
+      E-Learning
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#adminNavbar"
+            aria-controls="adminNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="adminNavbar">
+
+      <!-- LEFT MENU -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/adminDashboard">
+            Dashboard
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/adminCourses">
+            Courses
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/adminUsers">
+            Users
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/adminReports">
+            Reports
+          </a>
+        </li>
+      </ul>
+
+      <!-- RIGHT MENU (ADMIN DROPDOWN) -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle fw-bold"
+             href="#"
+             id="adminProfileDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Admin
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="adminProfileDropdown">
+
+            <!-- OPTIONAL (remove if not needed) -->
+            <!--
+            <li>
+              <a class="dropdown-item" href="/admin/profile">Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/settings">Settings</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            -->
+
+            <!-- LOGOUT -->
+            <li>
+              <a class="dropdown-item text-danger"
+                 href="/logout">Logout </a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+</body>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</html>

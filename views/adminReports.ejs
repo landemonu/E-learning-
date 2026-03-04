@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Reports & Analytics</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- ADMIN HEADER -->
+<%- include("./components/adminHeader.ejs") %>
+
+<div class="container mt-4">
+
+  <h2 class="mb-4">📊 Reports & Analytics</h2>
+
+  <!-- ================= SUMMARY CARDS ================= -->
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+      <div class="card bg-primary text-white shadow">
+        <div class="card-body">
+          <h5>Total Orders</h5>
+          <h2><%= orders ? orders.length : 0 %></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-success text-white shadow">
+        <div class="card-body">
+          <h5>Total Earnings</h5>
+          <h2>
+            ₹
+            <%= orders
+              ? orders.reduce((sum, o) => sum + (o.amount || 0), 0)
+              : 0
+            %>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-dark text-white shadow">
+        <div class="card-body">
+          <h5>Unique Buyers</h5>
+          <h2>
+            <%
+              const buyers = orders
+                ? [...new Set(orders.map(o => o.userId?._id?.toString()))]
+                : [];
+            %>
+            <%= buyers.length %>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= ORDERS TABLE ================= -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Amount (₹)</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (!orders || orders.length === 0) { %>
+          <tr>
+            <td colspan="6" class="text-center">
+              No purchase reports available
+            </td>
+          </tr>
+        <% } %>
+
+        <% orders.forEach((order, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+
+            <td>
+              <strong><%= order.userId?.name || "Unknown User" %></strong><br>
+              <small class="text-muted">
+                <%= order.userId?.email || "" %>
+              </small>
+            </td>
+
+            <td>
+              <%= order.courseId?.title || "Deleted Course" %>
+            </td>
+
+            <td>
+              ₹ <%= order.amount || 0 %>
+            </td>
+
+            <td>
+              <% if (order.status === "SUCCESS") { %>
+                <span class="badge bg-success">SUCCESS</span>
+              <% } else if (order.status === "FAILED") { %>
+                <span class="badge bg-danger">FAILED</span>
+              <% } else { %>
+                <span class="badge bg-warning text-dark">PENDING</span>
+              <% } %>
+            </td>
+
+            <td>
+              <%= new Date(order.createdAt).toLocaleDateString() %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<%- include("./components/footer.ejs") %>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-LEARNING</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+     <%- include("./components/header.ejs") %>
+    <!-- Header -->
+    <div class="bg-warning text-black py-5 text-center">
+        <h1><%= data.title %></h1>
+        <p class="lead"><%= data.description %></p>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="/about/hero.jpg" class="img-fluid rounded shadow" alt="banner" hight="100px">
+            </div>
+            <div class="col-lg-6 ps-lg-5 mt-4 mt-lg-0">
+                <h2>Our Mission</h2>
+                <p class="text-muted"><%= data.mission %></p>
+
+                <h2 class="mt-4">Our Vision</h2>
+                <p class="text-muted"><%= data.vision %></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Platform Features</h2>
+            <div class="row">
+
+                <% data.features.forEach(function(feature) { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><%= feature %></h5>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5">Our Team</h2>
+        <div class="row g-4">
+
+            <% data.team.forEach(function(member) { %>
+                <div class="col-md-4">
+                    <div class="card shadow-sm text-center">
+                        <img src="<%= member.img %>" class="card-img-top" alt="Team Member" height="250px">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= member.name %></h5>
+                            <p class="text-muted"><%= member.role %></p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+    </section>
+     <%- include("./components/footer.ejs") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

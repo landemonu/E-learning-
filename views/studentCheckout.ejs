@@ -1,0 +1,36 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    key: "<%= key %>",
+    amount: "<%= order.amount %>",
+    currency: "INR",
+    name: "E-Learning",
+    description: "<%= course.title %>",
+    order_id: "<%= order.id %>",
+
+    handler: function (response) {
+        fetch("/student/payment/success", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                paymentId: response.razorpay_payment_id,
+                orderId: response.razorpay_order_id,
+                courseId: "<%= course._id %>"
+            })
+        }).then(() => {
+            window.location.href = "/student/mycourses";
+        });
+    },
+
+    prefill: {
+        name: "<%= userData.name %>",
+        email: "<%= userData.email %>"
+    },
+
+    theme: { color: "#0d6efd" }
+};
+
+var rzp = new Razorpay(options);
+rzp.open();
+</script>

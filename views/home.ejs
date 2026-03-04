@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <%- include("./components/header.ejs") %>
+    <!-- Hero Section -->
+<section class="hero-section d-flex align-items-center"
+         style="height: 120vh; background: url('/course/hero.jpg') center/cover no-repeat;">
+    <div class="container text-left text-black">
+        <h1 class="fw-bold display-4">Learn New Skills Online</h1>
+        <p class="fs-5 mb-4">Join thousands of learners and boost your career.</p>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="container py-5">
+    <h2 class="text-center mb-4">Top Categories</h2>
+
+    <div class="row text-center">
+        <div class="col-md-3 mb-4">
+            <div class="p-4 shadow rounded">
+                <h5>Web Development</h5>
+                <p class="text-muted small">HTML, CSS, JavaScript, Node.js</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="p-4 shadow rounded">
+                <h5>Programming</h5>
+                <p class="text-muted small">C, C++, Java, Python</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="p-4 shadow rounded">
+                <h5>Design</h5>
+                <p class="text-muted small">UI/UX, Graphic Design</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="p-4 shadow rounded">
+                <h5>Business Skills</h5>
+                <p class="text-muted small">Marketing, Leadership</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section class="container py-5">
+    <h2 class="text-center mb-4">Featured Courses</h2>
+
+    <div class="row">
+
+        <% courses.forEach(course => { %> 
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <img src="<%= course.img %>" class="card-img-top" alt="Course Image" height="250px">
+
+                    <div class="card-body">
+                        <h5 class="card-title"><%= course.name %></h5>
+                        <p class="card-text"><%= course.desc %></p>
+                        <a href="#" class="btn btn-primary w-100">Start Now</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="bg-light py-5">
+    <div class="container text-center">
+        <div class="row">
+
+            <div class="col-md-3 mb-4">
+                <h2 class="fw-bold">10K+</h2>
+                <p class="text-muted">Students</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h2 class="fw-bold">500+</h2>
+                <p class="text-muted">Courses</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h2 class="fw-bold">200+</h2>
+                <p class="text-muted">Instructors</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h2 class="fw-bold">4.8★</h2>
+                <p class="text-muted">Rating</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="container py-5">
+    <h2 class="text-center mb-4">What Students Say</h2>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+            <div class="p-4 shadow rounded">
+                <p>"Amazing platform! I learned web development easily."</p>
+                <h6 class="mt-3">— Rahul Sharma</h6>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="p-4 shadow rounded">
+                <p>"Courses are high quality and beginner friendly."</p>
+                <h6 class="mt-3">— Priya Verma</h6>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="p-4 shadow rounded">
+                <p>"Helped me get a job! Highly recommended."</p>
+                <h6 class="mt-3">— Aman Gupta</h6>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="bg-dark text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-3">Subscribe for Updates</h2>
+        <p class="mb-4">Get notified about new courses and offers.</p>
+
+        <form class="d-flex justify-content-center">
+            <input type="email" class="form-control w-50" placeholder="Enter your email">
+            <button class="btn btn-primary ms-2">Subscribe</button>
+        </form>
+    </div>
+</section>
+ <%- include("./components/footer.ejs") %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

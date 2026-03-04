@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= course.title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<%- include("./components/studentheader.ejs") %>
+
+<div class="container mt-4">
+
+    <h2><%= course.title %></h2>
+    <p><%= course.description %></p>
+
+    <hr>
+
+    <!-- 🎥 VIDEOS -->
+ <h4>Course Videos</h4>
+
+<ul class="list-group">
+  <% course.videos.forEach((video, index) => { %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span><%= index + 1 %>. <%= video.title %></span>
+
+      <a href="/watchVideo/<%= video._id %>" class="btn btn-sm btn-primary">
+        Watch
+      </a>
+    </li>
+  <% }) %>
+</ul>
+    <!-- 🧠 QUIZZES -->
+    <h4>Course Quizzes</h4>
+
+    <%
+  const progressObj = userData.courses.find(
+    c => c.course.toString() === course._id.toString()
+  );
+%>
+
+<h4 class="mt-4">Course Quiz</h4>
+
+<% if (progressObj && progressObj.completed) { %>
+  <a href="/studentQuiz/<%= course._id %>" class="btn btn-success">
+    Solve Quiz
+  </a>
+<% } else { %>
+  <p class="text-muted">Complete video to unlock quiz</p>
+<% } %>
+
+
+</div>
+
+<%- include("./components/footer.ejs") %>
+</body>
+</html>
